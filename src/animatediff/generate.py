@@ -579,9 +579,9 @@ def create_pipeline_sdxl(
 
     load_lora_map(pipeline, model_config.lora_map, video_length, is_sdxl=True)
 
-    pipeline.unet = pipeline.unet.half()
-    pipeline.text_encoder = pipeline.text_encoder.half()
-    pipeline.text_encoder_2 = pipeline.text_encoder_2.half()
+    pipeline.unet = pipeline.unet.bfloat16()
+    pipeline.text_encoder = pipeline.text_encoder.bfloat16()
+    pipeline.text_encoder_2 = pipeline.text_encoder_2.bfloat16()
 
     # Load TI embeddings
     pipeline.text_encoder = pipeline.text_encoder.to("cuda")
@@ -749,10 +749,10 @@ def create_pipeline(
     load_lora_map(pipeline, model_config.lora_map, video_length)
 
     # Load TI embeddings
-    pipeline.unet = pipeline.unet.half()
-    pipeline.text_encoder = pipeline.text_encoder.half()
+    pipeline.unet = pipeline.unet.bfloat16()
+    pipeline.text_encoder = pipeline.text_encoder.bfloat16()
 
-    pipeline.text_encoder = pipeline.text_encoder.to("cuda")
+    pipeline.text_encoder = pipeline.text_encoder
 
     load_text_embeddings(pipeline)
 
@@ -915,10 +915,10 @@ def create_us_pipeline(
             load_safetensors_lora2(pipeline.text_encoder, pipeline.unet, lora_path, alpha=alpha,is_animatediff=False)
 
     # Load TI embeddings
-    pipeline.unet = pipeline.unet.half()
-    pipeline.text_encoder = pipeline.text_encoder.half()
+    pipeline.unet = pipeline.unet.bfloat16()
+    pipeline.text_encoder = pipeline.text_encoder.bfloat16()
 
-    pipeline.text_encoder = pipeline.text_encoder.to("cuda")
+    pipeline.text_encoder = pipeline.text_encoder
 
     load_text_embeddings(pipeline)
 
