@@ -584,8 +584,8 @@ def create_pipeline_sdxl(
     pipeline.text_encoder_2 = pipeline.text_encoder_2.bfloat16()
 
     # Load TI embeddings
-    pipeline.text_encoder = pipeline.text_encoder.to("cuda")
-    pipeline.text_encoder_2 = pipeline.text_encoder_2.to("cuda")
+    pipeline.text_encoder = pipeline.text_encoder
+    pipeline.text_encoder_2 = pipeline.text_encoder_2
 
     load_text_embeddings(pipeline, is_sdxl=True)
 
