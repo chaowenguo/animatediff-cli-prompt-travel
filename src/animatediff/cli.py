@@ -334,7 +334,7 @@ def generate(
     # turn the device string into a torch.device
     device: torch.device = torch.device(device)
 
-    model_name_or_path = Path("runwayml/stable-diffusion-v1-5") if not is_sdxl else Path("stabilityai/stable-diffusion-xl-base-1.0")
+    model_name_or_path = Path("chaowenguo/stable-diffusion-v1-5") if not is_sdxl else Path("stabilityai/stable-diffusion-xl-base-1.0")
 
     # Get the base model if we don't have it already
     logger.info(f"Using base model: {model_name_or_path}")
