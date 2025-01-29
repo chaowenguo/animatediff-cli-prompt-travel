@@ -507,7 +507,7 @@ def tile_upscale(
             path_type=Path,
             help="Base model to use (path or HF repo ID). You probably don't need to change this.",
         ),
-    ] = Path("runwayml/stable-diffusion-v1-5"),
+    ] = Path("chaowenguo/stable-diffusion-v1-5"),
     config_path: Annotated[
         Path,
         typer.Option(
