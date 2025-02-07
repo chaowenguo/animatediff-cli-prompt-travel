@@ -28,7 +28,7 @@ from diffusers.loaders import LoraLoaderMixin, TextualInversionLoaderMixin
 from diffusers.models import (AutoencoderKL, ControlNetModel,
                               UNet2DConditionModel)
 from diffusers.models.attention import BasicTransformerBlock
-from diffusers.models.unet_2d_blocks import (CrossAttnDownBlock2D,
+from diffusers.models.unet.unet_2d_blocks import (CrossAttnDownBlock2D,
                                              CrossAttnUpBlock2D, DownBlock2D,
                                              UpBlock2D)
 from diffusers.pipelines.controlnet.multicontrolnet import MultiControlNetModel
