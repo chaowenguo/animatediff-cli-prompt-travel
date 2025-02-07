@@ -23,7 +23,7 @@ import torch
 from diffusers.models import (AutoencoderKL, ControlNetModel, PriorTransformer,
                               UNet2DConditionModel)
 from diffusers.schedulers import DDIMScheduler
-from diffusers.utils import (is_accelerate_available, is_omegaconf_available,
+from diffusers.utils import (is_accelerate_available,
                              logging)
 from transformers import CLIPTextConfig, CLIPTextModel
 
