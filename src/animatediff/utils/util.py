@@ -377,8 +377,7 @@ def prepare_motion_module():
 
     os.makedirs("data/models/motion-module", exist_ok=True)
     for hub_file in [
-        "mm_sd_v15_v2.ckpt",
-        "mm_sdxl_v10_beta.ckpt",
+        "AnimateLCM_sd15_t2v.ckpt",
     ]:
         path = Path(hub_file)
 
@@ -388,7 +387,7 @@ def prepare_motion_module():
             continue
 
         hf_hub_download(
-            repo_id="guoyww/animatediff", subfolder=PurePosixPath(path.parent), filename=PurePosixPath(path.name), local_dir="data/models/motion-module"
+            repo_id="chaowenguo/AnimateLCM", subfolder=PurePosixPath(path.parent), filename=PurePosixPath(path.name), local_dir="data/models/motion-module"
         )
 
 def prepare_wd14tagger():
