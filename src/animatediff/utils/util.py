@@ -300,7 +300,7 @@ def prepare_lcm_lora():
 
     os.makedirs("data/models/lcm_lora/sd15", exist_ok=True)
     for hub_file in [
-        "pytorch_lora_weights.safetensors",
+        "AnimateLCM_sd15_t2v_lora.safetensors",
     ]:
         path = Path(hub_file)
 
@@ -310,7 +310,7 @@ def prepare_lcm_lora():
             continue
 
         hf_hub_download(
-            repo_id="latent-consistency/lcm-lora-sdv1-5", subfolder=PurePosixPath(path.parent), filename=PurePosixPath(path.name), local_dir="data/models/lcm_lora/sd15"
+            repo_id="chaowenguo/AnimateLCM", subfolder=PurePosixPath(path.parent), filename=PurePosixPath(path.name), local_dir="data/models/lcm_lora/sd15"
         )
 
 def prepare_lllite():
