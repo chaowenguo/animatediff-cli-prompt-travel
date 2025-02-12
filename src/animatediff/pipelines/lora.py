@@ -45,7 +45,7 @@ def load_lcm_lora(pipe, lcm_map, is_sdxl=False, is_merge=False):
     if is_sdxl:
         lora_path = data_dir.joinpath("models/lcm_lora/sdxl/pytorch_lora_weights.safetensors")
     else:
-        lora_path = data_dir.joinpath("models/lcm_lora/sd15/pytorch_lora_weights.safetensors")
+        lora_path = data_dir.joinpath("models/lcm_lora/sd15/AnimateLCM_sd15_t2v_lora.safetensors")
     logger.info(f"{lora_path=}")
 
     if is_merge:
