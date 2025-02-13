@@ -93,9 +93,9 @@ Almost same as the original animatediff-cli, but with a slight change in config 
 
 {
   "name": "sample",
-  "path": "share/Stable-diffusion/mistoonAnime_v20.safetensors",  # Specify Checkpoint as a path relative to /animatediff-cli/data
+  "path": "chilloutMix-Ni.safetensors",  # Specify Checkpoint as a path relative to /animatediff-cli/data
   "lcm_map":{     # lcm-lora
-    "enable":false,
+    "enable":true,
     "start_scale":0.15,
     "end_scale":0.75,
     "gradient_start":0.2,
@@ -114,16 +114,16 @@ Almost same as the original animatediff-cli, but with a slight change in config 
     "reverse_steps": 5,          # Number of reversal steps at latent size switching timing
     "noise_add_count":3          # Additive amount of noise　at latent size switching timing
   },
-  "vae_path":"share/VAE/vae-ft-mse-840000-ema-pruned.ckpt",       # Specify vae as a path relative to /animatediff-cli/data
-  "motion_module": "models/motion-module/mm_sd_v14.ckpt",         # Specify motion module as a path relative to /animatediff-cli/data
-  "context_schedule":"uniform",          # "uniform" or "composite"
+  "vae_path":"vae-ft-mse-840000-ema-pruned.ckpt",       # Specify vae as a path relative to /animatediff-cli/data
+  "motion_module": "AnimateLCM_sd15_t2v.ckpt",         # Specify motion module as a path relative to /animatediff-cli/data
+  "context_schedule":"composite",          # "uniform" or "composite"
   "compile": false,
   "seed": [
     341774366206100,-1,-1         # -1 means random. If "--repeats 3" is specified in this setting, The first will be 341774366206100, the second and third will be random.
   ],
-  "scheduler": "ddim",      # "ddim","euler","euler_a","k_dpmpp_2m", etc...
-  "steps": 40,
-  "guidance_scale": 20,     # cfg scale
+  "scheduler": "lcm",      # "ddim","euler","euler_a","k_dpmpp_2m", etc...
+  "steps": 8,
+  "guidance_scale": 3,     # cfg scale
   "clip_skip": 2,
   "prompt_fixed_ratio": 0.5,
   "head_prompt": "masterpiece, best quality, a beautiful and detailed portriat of muffet, monster girl,((purple body:1.3)),humanoid, arachnid, anthro,((fangs)),pigtails,hair bows,5 eyes,spider girl,6 arms,solo",
@@ -341,7 +341,7 @@ Almost same as the original animatediff-cli, but with a slight change in config 
     }
   },
   "output":{   # output format 
-    "format" : "gif",   # gif/mp4/webm
+    "format" : "mp4",   # gif/mp4/webm
     "fps" : 8,
     "encode_param":{
       "crf": 10
