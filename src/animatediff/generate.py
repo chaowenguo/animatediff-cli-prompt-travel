@@ -514,16 +514,6 @@ def create_pipeline_sdxl(
     else:
         logger.info("Using base model weights (no checkpoint/LoRA)")
 
-    if model_config.vae_path:
-        vae_path = data_dir.joinpath(model_config.vae_path)
-        logger.info(f"Loading vae from {vae_path}")
-
-        if vae_path.is_dir():
-            vae = AutoencoderKL.from_pretrained(vae_path)
-        else:
-            tensors = load_tensors(vae_path)
-            tensors = convert_ldm_vae_checkpoint(tensors, vae.config)
-            vae.load_state_dict(tensors)
 
     unet.to(torch.float16)
     text_encoder.to(torch.float16)
@@ -636,7 +626,7 @@ def create_pipeline(
     logger.info("Loading text encoder...")
     text_encoder: CLIPSkipTextModel = CLIPSkipTextModel.from_pretrained(base_model, subfolder="text_encoder")
     logger.info("Loading VAE...")
-    vae: AutoencoderKL = AutoencoderKL.from_pretrained(base_model, subfolder="vae")
+    vae: AutoencoderKL = AutoencoderKL.from_pretrained('https://huggingface.co/chaowenguo/pal/blob/main/vae-ft-mse-840000-ema-pruned.safetensors')
     logger.info("Loading UNet...")
     unet: UNet3DConditionModel = UNet3DConditionModel.from_pretrained_2d(
         pretrained_model_path=base_model,
@@ -691,17 +681,6 @@ def create_pipeline(
             raise ValueError(f"VAE has missing keys: {vae_missing}")
     else:
         logger.info("Using base model weights (no checkpoint/LoRA)")
-
-    if model_config.vae_path:
-        vae_path = data_dir.joinpath(model_config.vae_path)
-        logger.info(f"Loading vae from {vae_path}")
-
-        if vae_path.is_dir():
-            vae = AutoencoderKL.from_pretrained(vae_path)
-        else:
-            tensors = load_tensors(vae_path)
-            tensors = convert_ldm_vae_checkpoint(tensors, vae.config)
-            vae.load_state_dict(tensors)
 
 
     # enable xformers if available
