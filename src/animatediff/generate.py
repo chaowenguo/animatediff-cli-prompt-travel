@@ -626,7 +626,7 @@ def create_pipeline(
     logger.info("Loading text encoder...")
     text_encoder: CLIPSkipTextModel = CLIPSkipTextModel.from_pretrained(base_model, subfolder="text_encoder")
     logger.info("Loading VAE...")
-    vae: AutoencoderKL = AutoencoderKL.from_pretrained('https://huggingface.co/chaowenguo/pal/blob/main/vae-ft-mse-840000-ema-pruned.safetensors')
+    vae: AutoencoderKL = AutoencoderKL.from_single_file('https://huggingface.co/chaowenguo/pal/blob/main/vae-ft-mse-840000-ema-pruned.safetensors')
     logger.info("Loading UNet...")
     unet: UNet3DConditionModel = UNet3DConditionModel.from_pretrained_2d(
         pretrained_model_path=base_model,
