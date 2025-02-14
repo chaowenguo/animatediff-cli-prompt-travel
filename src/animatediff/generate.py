@@ -447,7 +447,7 @@ def create_pipeline_sdxl(
     logger.info("Loading text encoder...")
     text_encoder: CLIPTextModel = CLIPTextModel.from_pretrained(base_model, subfolder="text_encoder", torch_dtype=torch.float16)
     logger.info("Loading VAE...")
-    vae: AutoencoderKL = AutoencoderKL.from_pretrained(base_model, subfolder="vae")
+    vae: AutoencoderKL = AutoencoderKL.from_pretrained('https://huggingface.co/chaowenguo/pal/blob/main/vae-ft-mse-840000-ema-pruned.safetensors')
     logger.info("Loading tokenizer two...")
     tokenizer_two = CLIPTokenizer.from_pretrained(base_model, subfolder="tokenizer_2")
     logger.info("Loading text encoder two...")
