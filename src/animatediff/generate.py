@@ -1,4 +1,4 @@
-import glob
+1import glob
 import logging
 import os
 import re
@@ -447,7 +447,7 @@ def create_pipeline_sdxl(
     logger.info("Loading text encoder...")
     text_encoder: CLIPTextModel = CLIPTextModel.from_pretrained(base_model, subfolder="text_encoder", torch_dtype=torch.float16)
     logger.info("Loading VAE...")
-    vae: AutoencoderKL = AutoencoderKL.from_pretrained('https://huggingface.co/chaowenguo/pal/blob/main/vae-ft-mse-840000-ema-pruned.safetensors')
+    vae: AutoencoderKL = AutoencoderKL.from_single_file('https://huggingface.co/chaowenguo/pal/blob/main/vae-ft-mse-840000-ema-pruned.safetensors')
     logger.info("Loading tokenizer two...")
     tokenizer_two = CLIPTokenizer.from_pretrained(base_model, subfolder="tokenizer_2")
     logger.info("Loading text encoder two...")
@@ -515,9 +515,9 @@ def create_pipeline_sdxl(
         logger.info("Using base model weights (no checkpoint/LoRA)")
 
 
-    unet.to(torch.float16)
-    text_encoder.to(torch.float16)
-    text_encoder_two.to(torch.float16)
+    unet.to(torch.bfloat16)
+    text_encoder.to(torch.bfloat16)
+    text_encoder_two.to(torch.bfloat16)
 
     del unet_state_dict
     del tenc_state_dict
