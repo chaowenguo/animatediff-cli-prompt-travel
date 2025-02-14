@@ -125,17 +125,29 @@ Almost same as the original animatediff-cli, but with a slight change in config 
   "steps": 8,
   "guidance_scale": 3,     # cfg scale
   "clip_skip": 2,
-  "prompt_fixed_ratio": 0.5,
-  "head_prompt": "masterpiece, best quality, a beautiful and detailed portriat of muffet, monster girl,((purple body:1.3)),humanoid, arachnid, anthro,((fangs)),pigtails,hair bows,5 eyes,spider girl,6 arms,solo",
-  "prompt_map": {           # "FRAME" : "PROMPT" format / ex. prompt for frame 32 is "head_prompt" + prompt_map["32"] + "tail_prompt"
-    "0":  "smile standing,((spider webs:1.0))",
-    "32":  "(((walking))),((spider webs:1.0))",
-    "64":  "(((running))),((spider webs:2.0)),wide angle lens, fish eye effect",
-    "96":  "(((sitting))),((spider webs:1.0))"
-  },
-  "tail_prompt": "clothed, open mouth, awesome and detailed background, holding teapot, holding teacup, 6 hands,detailed hands,storefront that sells pastries and tea,bloomers,(red and black clothing),inside,pouring into teacup,muffetwear",
+  "prompt_fixed_ratio": 0.8,
+  "head_prompt": "A cowboy_shot gorgeous smiling slim young cleavage robust boob bare-armed japanese girl, wearing white deep V bandeau pantie, hands with five fingers, light_background",
+  "prompt_map": {
+        "0": "lying on back on white bed",
+        "8": "kneeling on one kneel on white bed",
+        "16": "kneeling on both kneels on white bed",
+        "24": "sitting on white bed",
+        "32": "hand heart",
+        "40": "waving hands",
+        "48": "from_above",
+        "56": "from_side",
+        "64": "from_below",
+        "72": "from_behind",
+        "80": "looking at viewer",
+        "88": "closed_eyes",
+        "96": "open_eyes, open_mouth",
+        "104": "closed_eyes, closed_mouth",
+        "112": "open eyes, open_mouth, tongue",
+        "120": "eating, bowl,chopsticks,holding,food"
+    },
+  "tail_prompt": "best quality, extremely detailed, HD, ultra-realistic, 8K, HQ, masterpiece, trending on artstation, art, smooth",
   "n_prompt": [
-    "(worst quality, low quality:1.4),nudity,simple background,border,mouth closed,text, patreon,bed,bedroom,white background,((monochrome)),sketch,(pink body:1.4),7 arms,8 arms,4 arms"
+    "nipple, dudou, shirt, shawl, hat, sock, sleeve, monochrome, dark background, longbody, lowres, bad anatomy, bad hands, fused fingers, missing fingers, too many fingers, extra digit, fewer difits, cropped, worst quality, low quality, deformed body, bloated, ugly, unrealistic, extra hands and arms"
   ],
   "lora_map": {             # "PATH_TO_LORA" : STRENGTH format
     "share/Lora/muffet_v2.safetensors" : 1.0,                     # Specify lora as a path relative to /animatediff-cli/data
@@ -355,10 +367,7 @@ cd animatediff-cli-prompt-travel
 venv\Scripts\activate.bat
 
 # with this setup, it took about a minute to generate in my environment(RTX4090). VRAM usage was 6-7 GB
-# width 256 / height 384 / length 128 frames / context 16 frames
-animatediff generate -c config/prompts/prompt_travel.json -W 256 -H 384 -L 128 -C 16
-# 5min / 9-10GB
-animatediff generate -c config/prompts/prompt_travel.json -W 512 -H 768 -L 128 -C 16
+animatediff generate -c config/prompts/prompt_travel.json -H 912 -L 128 -C 8
 
 # upscale using controlnet (tile, line anime, ip2p, ref)
 # specify the directory of the frame generated in the above step
