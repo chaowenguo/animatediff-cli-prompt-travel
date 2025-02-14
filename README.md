@@ -132,7 +132,7 @@ Almost same as the original animatediff-cli, but with a slight change in config 
         "8": "kneeling on one kneel on white bed",
         "16": "kneeling on both kneels on white bed",
         "24": "sitting on white bed",
-        "32": "hand heart",
+        "32": "hand_heart",
         "40": "waving hands",
         "48": "from_above",
         "56": "from_side",
