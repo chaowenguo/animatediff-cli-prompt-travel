@@ -1,4 +1,4 @@
-1import glob
+import glob
 import logging
 import os
 import re
