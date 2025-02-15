@@ -126,7 +126,7 @@ Almost same as the original animatediff-cli, but with a slight change in config 
   "guidance_scale": 3,     # cfg scale
   "clip_skip": 2,
   "prompt_fixed_ratio": 0.8,
-  "head_prompt": "A cowboy_shot gorgeous smiling slim young cleavage robust boob bare-armed japanese girl, wearing white deep V bandeau pantie, hands with five fingers, light_background",
+  "head_prompt": "A cowboy_shot gorgeous smiling slim young cleavage robust boob bare-armed japanese girl, wearing white deep V bandeau pantie, hands with five fingers",
   "prompt_map": {
         "0": "lying on back on white bed",
         "8": "kneeling on one kneel on white bed",
@@ -147,7 +147,7 @@ Almost same as the original animatediff-cli, but with a slight change in config 
     },
   "tail_prompt": "best quality, extremely detailed, HD, ultra-realistic, 8K, HQ, masterpiece, trending on artstation, art, smooth",
   "n_prompt": [
-    "nipple, dudou, shirt, shawl, hat, sock, sleeve, monochrome, dark background, longbody, lowres, bad anatomy, bad hands, fused fingers, missing fingers, too many fingers, extra digit, fewer difits, cropped, worst quality, low quality, deformed body, bloated, ugly, unrealistic, extra hands and arms"
+    "nipple, dudou, shirt, shawl, hat, sock, sleeve, monochrome, dark background, longbody, lowres, bad anatomy, bad hands, fused fingers, missing fingers, too many fingers, extra digit, fewer digits, cropped, worst quality, low quality, deformed body, bloated, ugly, unrealistic, extra hands and arms"
   ],
   "lora_map": {             # "PATH_TO_LORA" : STRENGTH format
     "share/Lora/muffet_v2.safetensors" : 1.0,                     # Specify lora as a path relative to /animatediff-cli/data
