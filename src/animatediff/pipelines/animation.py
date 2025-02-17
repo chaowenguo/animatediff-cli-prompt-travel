@@ -1,6 +1,6 @@
 # Adapted from https://github.com/showlab/Tune-A-Video/blob/main/tuneavideo/pipelines/pipeline_tuneavideo.py
 
-import inspect
+import inspect, pathlib
 import itertools
 import logging
 from dataclasses import dataclass
@@ -2397,7 +2397,8 @@ class AnimationPipeline(DiffusionPipeline, TextualInversionLoaderMixin):
         **kwargs,
     ):
         import gc
-
+        tmp = pathlib.Path('tmp.pt')
+        latents = torch.load(tmp) if tmp.exists() else None
         global C_REF_MODE
 
         gradual_latent = False
@@ -2793,11 +2794,12 @@ class AnimationPipeline(DiffusionPipeline, TextualInversionLoaderMixin):
 
         # 7. Denoising loop
         num_warmup_steps = len(timesteps) - num_inference_steps * self.scheduler.order
-        with self.progress_bar(total=total_steps) as progress_bar:
+        if True:
             i = 0
-            real_i = 0
+            real_i = i
 #            for i, t in enumerate(timesteps):
             while i < len(timesteps):
+                print(i)
                 t = timesteps[i]
                 stopwatch_start()
 
@@ -3317,7 +3319,6 @@ class AnimationPipeline(DiffusionPipeline, TextualInversionLoaderMixin):
                     pred = pred.to(dtype=latents.dtype, device=latents.device)
                     noise_pred[:, :, context] = noise_pred[:, :, context] + pred
                     counter[:, :, context] = counter[:, :, context] + 1
-                    progress_bar.update()
 
                 # perform guidance
                 noise_size = prompt_encoder.get_condi_size()
@@ -3418,6 +3419,7 @@ class AnimationPipeline(DiffusionPipeline, TextualInversionLoaderMixin):
                 prev_gradient_latent_size = cur_gradient_latent_size
 
                 stopwatch_stop("LOOP end")
+                torch.save(latents, tmp)
 
         controlnet_result = None
         torch.cuda.empty_cache()
